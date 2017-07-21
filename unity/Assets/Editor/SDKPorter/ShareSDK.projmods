@@ -1,0 +1,26 @@
+{
+    "group":       "ShareSDK",
+    "libs":        [],
+    "frameworks":  ["ImageIO.framework",
+                    "MessageUI.framework",
+                    "JavaScriptCore.framework",
+                    ],
+    "zips":         ["ShareSDK.zip"],                
+    "headerpaths": [],
+    "librarypaths": [],
+    "files":       ["ShareSDK/ShareSDK.framework",
+                    "ShareSDK/Support/Required/MOBFoundation.framework",
+                    "ShareSDK/Support/Required/ShareSDKConnector.framework",
+                    "ShareSDK/Support/Optional/ShareSDKExtension.framework",
+                    "ShareSDK/Support/Optional/ShareSDKUI.framework",
+                    "ShareSDK/Support/Optional/ShareSDKConfigFile.framework",
+                    "ShareSDK/Support/PlatformConnector/WechatConnector.framework"],
+    "folders":     [],
+    "buildSettings": { 
+        "OTHER_LDFLAGS" : ["-ObjC",
+                           "-lsqlite3.0",
+                           "-lz",
+                           "licucore"]
+    },
+    "excludes":    ["^.*.meta$", "^.*.mdown^", "^.*.pdf$"]
+}

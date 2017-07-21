@@ -1,0 +1,213 @@
+package tutorial;
+//一定要读的内容：所有来往于客户端与服务器的TCP数据包都必须以5个数字开头，这是保留的头格式，头格式总共是20个字节。
+//头格式的第一个数字的作用是用来定位后续跟的二进制对应的protobuf的包格式，这样保证了可扩展性，这一位称之为首位保留位
+//头格式的后面四个数字的作用是保留的，可以用于特殊定义的一些例外处理，从而省去解析后续二进制的过程
+
+// 为了服务器的保证可扩展性和Ddos防御准备，后台服务器的角色分成中心服务器和游戏负载服务器，两种服务器都不止一台
+// 用户首先登陆中心服务器，然后可以进行与游戏引擎无关的操作，包括：
+//查看个人信息，查看个人流水，查看个人战绩等
+//也包括，进入房间与创建房间，这两个接口在成功操作的情况下会返回游戏负载服务器的真正Ip地址与TCP端口号
+//客户端登陆游戏负载服务器进行游戏内的操作。
+
+//中心服务器的所有请求与接口都支持TCP与HTTP访问两种方式，如客户端以HTTP格式方式，则将数据包格式中的url作为访问地址，将剩余参与打成json包以POST格式发送即可。
+//游戏服务器的所有接口仅支持TCP访问方式，因为游戏服务器以不定时推送为主。
+
+
+// game server.proto 为总体房间服务器、中心服务器的Protobuf格式列表，
+// xxx_engine.proto 为xxx游戏的服务器客户端交互protobuf格式列表
+
+//目前支持的接口
+//app_login/weixin/
+    //input_info中需要的字段：  url SESSIONID third_token
+    //output_info中奖返回的字段：user_info
+    //字段内容详见 input_info 和output_info 的proto定义
+
+
+
+
+///staticc/room_opreation/
+    //input_info中需要的字段：  url SESSIONID third_token
+    //output_info中奖返回的字段：user_info
+    //字段内容详见 input_info 和output_info 的proto定义
+
+//
+
+
+//
+
+message profile_api{
+    optional string SESSIONID = 1 ;// 存储的sessionid
+    optional string client_version = 2 ;// 存储的sessionid
+}
+message profile_response{
+    optional status_info status_info = 1 ; //状态码和提示信息，只存在于同步返回的接口（主动推送接口没有）
+    optional user_info user_info = 2 ; //用户信息
+}
+
+message app_login__weixin_api{
+    optional string openid = 1 ;//微信登陆的openid
+    optional string access_token = 2 ;//微信登陆的access_token
+}
+message app_login__weixin_response{
+    optional status_info status_info = 1 ; //状态码和提示信息，只存在于同步返回的接口（主动推送接口没有）
+    optional user_info user_info = 2 ; //用户信息
+}
+
+message logout_api{
+    optional string SESSIONID = 1 ;
+}
+message logout_response{
+    optional status_info status_info = 1 ;
+}
+
+message staticc__FlowR_api{
+    optional string SESSIONID = 1 ;// 登陆接口返回session_id，用于验证登陆状态
+    optional int32  room_num = 2 ;//如果有这个域，则代表这次查询的流水是局限在房间内的所有流水，如果没有这个域，说明查询所有的流水。
+    optional int32  coin_type = 3 ;//货币种类
+}
+message staticc__FlowR_response{
+    optional status_info status_info = 1 ;//状态码和提示信息，只存在于同步返回的接口（主动推送接口没有）
+    optional flow_info flow_info = 2 ; //查询流水的信息，在查询流水后返回
+}
+message staticc__ChoiceR_api{//这个接口不需要登陆，所以就不需要SESSIONID
+    optional int32 rtype = 1 ;//要拉取选项列表的游戏种类，0位亳州麻将 1为浙南牛牛
+}
+message staticc__ChoiceR_response{
+    optional status_info status_info = 1 ; //状态码和提示信息，只存在于同步返回的接口（主动推送接口没有）
+    repeated choice_info choice_info = 2 ;// 让用户做选择的选项列表
+    repeated additional_price_unit price_unit = 7 ;//choice的一个扩展，用来展示房卡费用
+}
+
+message staticc__room_opreation_api{
+    optional string SESSIONID = 1 ;//未登录时，充当openid
+    optional int32 operation = 2 ; // 1 开房间、2 进入房间
+    optional int32  rtype = 3 ;//指定游戏类型
+    optional int32  room_num = 4 ;//用于加入房间
+    repeated play_config_unit play_config=5;//用于开房间，开设房间必须先拉取staticc__ChoiceR，然后让用户对选项进行选择
+}
+message staticc__room_opreation_response{
+    optional status_info status_info = 1 ; //返回的正确与否,主动推送消息无此字段
+    optional room_base_info room_info = 2 ; //开设和进入的房间信息
+}
+
+
+
+//
+//message input_info {//此格式可能以顶层格式直接出现在接口交互中（客户端发到服务器端），请注意，当首位保留位为1的时候，表示格式为此格式
+//    optional string url = 1 ;     //目标url：staticc/FlowR，staticc/ChoiceR，staticc/room_opreation app_login/weixin/
+//    optional string operation = 2 ;//room_opreation 操作类型：open开房间、enter进入房间
+//    //depart离开房间或同意离开房间、stay 不同意离开房间
+//    //shutdown关闭房间（暂不支持）、give赠送虚拟币（暂无）、buy_item购买虚拟币（暂无）、buy_check购买确认（暂无）
+//    optional string SESSIONID = 3 ;//未登录时，充当openid
+//    optional int32  user_id = 4 ; //未登录时，不存在
+//    optional string deviceid = 5 ;//设备device_id，起步阶段可以不收集
+//
+//    optional int32  third_type = 6 ;//用于第三方购买和第三方登陆
+//    optional string third_token = 7 ;//用于第三方购买和登陆的token
+//
+//    repeated play_config_unit play_config=8;//用于开房间
+//
+//    optional int32  counterparty_id = 9;//用于主动转账
+//    optional int32  room_num = 10 ;//用于加入房间
+//    optional int32  coin_type = 11 ;//用于赠送虚拟币
+//    optional int32  amount = 12 ;//用于购买或赠与虚拟货币的数量
+//    optional int32  rtype = 13 ;//指定游戏类型
+//}
+message play_config_unit {
+    optional string name = 1;// 玩法、局数、坐庄、癞子、房费、底分、最大抢庄
+    optional string choice = 2;//已经选定的内容
+    optional int32 choice_order = 3;//已经选定的内容1
+}
+
+
+//message output_info {//此格式可能以顶层格式直接出现在接口交互中（服务器端到客户端），请注意，当首位保留位为1的时候，表示格式为此格式
+//    optional string url = 1 ;  //同输入url，推送消息无此字段
+//    optional string operation = 2 ; //同输入，推送消息无此字段
+//    optional status_info status_info = 3 ; //返回的正确与否,主动推送消息无此字段
+//    optional user_info user_info = 4 ; //登陆接口返回
+//    optional flow_info flow_info = 5 ; //查询流水的信息，在查询流水后返回
+//    repeated choice_info choice_info = 6 ;// 获取设置列表
+//    repeated additional_price_unit price_unit = 7 ;//choice的一个扩展，用来展示房卡费用
+//    optional room_base_info room_info = 8 ; //创建和进入房间第一次推送，房间状态变化之后会收到推送
+//}
+
+message room_base_info {
+    optional int32 room_num = 1;
+    optional string tcp_server = 2 ;
+}
+
+
+message status_info {
+    optional string msg = 1 ;
+    optional int32 code = 2 ; //0 和200都是成功， 其他都是错误信息，后台工程师会提供真值表
+}
+
+message user_info {
+    optional string nickname = 1 ;
+    optional int32  sex = 2 ;
+    optional string photo_url = 3 ;
+    optional int32  level = 4 ;
+    optional int32  score = 5 ;
+    optional int32  card = 6 ;
+    optional int32  zuan = 7 ;
+    optional int32  gold = 8 ;
+    optional int32  total_score_win = 9 ;
+    optional int32  total_score_lose = 10 ;
+    optional int32  user_point = 11 ;
+    optional int32  user_id = 12 ;
+    optional string  session_id = 13 ;
+}
+message choice_info {
+    optional string name = 1;// 玩法、局数、坐庄、癞子、房费、底分、最大抢庄
+    repeated string choice = 2;
+    optional int32 default = 3;
+}
+
+message additional_price_unit{ //作为choice的一个扩展，当
+    optional string ju_num = 1;// 对应局数
+    optional int32 price_in_total = 2;// 房主付费情况下房卡扣除
+    optional int32 price_in_aa = 3;//AA制情况下每个人的房卡扣除
+}
+
+message flow_info{
+    optional int32 total = 1;
+    optional int32 count= 2;
+    optional int32 page_num = 3;
+    optional int32 page = 4;
+    repeated flow_unit flow_unit = 5;
+}
+
+message flow_unit {
+    optional int32 before = 1;
+    optional int32 amount= 2;
+    optional int32 after = 3;
+    optional string counterparty_name  = 4;
+    optional string counterparty_photo = 5 ;
+    optional int32 counterparty_id = 6;
+    optional int32 reason = 7;
+}
+
+
+// 房间负载服务器交互列表
+//
+//message room_info {////此格式可能以顶层格式直接出现在接口交互中（服务器端到客户端），请注意，当首位保留位为2的时候，表示格式为此格式
+//    optional int32 room_status = 1;
+//    optional int32 room_num = 2;
+//    optional string tcp_server = 3 ;
+//    repeated user_info user_info =4;
+//}
+//
+//
+//message  game_input_info {////此格式可能以顶层格式直接出现在接口交互中（客户端到服务端），请注意，当首位保留位为2的时候，表示格式为此格式
+//    optional string action = 1; //操作 start pause exit
+//    optional int32 user_point = 2; //用户的位置
+//    optional int32 user_id = 3; //用户id
+//    optional int32 room_num = 4;
+//    optional string session_id = 5 ;//从中心服务器获得，用于验证用户的有效性，开始的时候可以不设置。
+//}
+
+
+
+
+
+

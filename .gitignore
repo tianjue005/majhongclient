@@ -1,0 +1,44 @@
+/build
+/.idea
+/.gradle
+/proj.android/build/
+/proj.android/gen/
+/proj.android/bin/
+/proj.android-gps/build/
+/proj.android-gps/gen/
+/proj.android-gps/bin/
+
+android.apk
+/proj.android/assets/bin/
+# Unity generated #
+# =============== #
+/unity/Temp/
+/unity/Library/
+/unity/obj
+/unity/build
+
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+/unity/ExportedObj/
+/unity/obj/
+/unity/*.svd
+/unity/*.csproj
+/unity/*.pidb
+/unity/*.suo
+/unity/*.sln
+/unity/*.user
+/unity/*.unityproj
+/unity/*.booproj
+
+# ============ #
+# OS generated #
+# ============ #
+/unity/.DS_Store
+/unity/.DS_Store?
+/unity/._*
+/unity/.Spotlight-V100
+/unity/.Trashes
+/unity/ehthumbs.db
+/unity/Thumbs.db
+/.vscode/

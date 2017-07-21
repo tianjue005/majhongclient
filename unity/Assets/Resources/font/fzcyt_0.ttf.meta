@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 0a411c64403238946b6ae81625c77910
+timeCreated: 1493995155
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: FZLanTingYuanS-DB1-GB
+  fontNames:
+  - FZLanTingYuanS-DB1-GB
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

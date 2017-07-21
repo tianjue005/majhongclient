@@ -1,0 +1,20 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\netManager\ClientRequest.cs">
+    <Files>
+      <File FileName="Assets\Script\Login_Panle_Event\LoginSystemScript.cs" Line="84" Column="9" />
+      <File FileName="Assets\ScriptNew\PlatformBridge.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\netManager\CustomSocket.cs" Line="138" Column="27" />
+      <File FileName="Assets\Script\netManager\ClientRequest.cs" Line="76" Column="46" />
+      <File FileName="Assets\Script\netManager\ChatRequest.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\soundsCtrl\MicroPhoneInput.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\InitializationConfigScritp.cs" Line="1" Column="1" />
+      <File FileName="Assets\ScriptNew\ApiCode.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\netManager\Events\APIS.cs" Line="19" Column="35" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

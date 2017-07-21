@@ -1,0 +1,25 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/utilTool/WechatOperateScript.cs">
+    <Files>
+      <File FileName="Assets/Script/netManager/ClientRequest.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Assets/Script/utilTool/WechatOperateScript.cs" Line="49" Column="32" NotebookId="1" />
+      <File FileName="Assets/Script/Login_Panle_Event/LoginSystemScript.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Assets/Script/netManager/ChatSocket.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Assets/Script/Home_Panel_Event/HomePanelScript.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Assets/Script/Home_Panel_Event/BroadcastScript.cs" Line="1" Column="1" NotebookId="1" />
+    </Files>
+    <FloatingWindows>
+      <FloatingWindow WindowId="1" X="6" Y="513" Width="1188" Height="1363">
+        <Files>
+          <File FileName="Assets/Script/netManager/CustomSocket.cs" Line="354" Column="33" />
+          <File FileName="Assets/Script/InitializationConfigScritp.cs" Line="1" Column="1" />
+        </Files>
+      </FloatingWindow>
+    </FloatingWindows>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

@@ -9,6 +9,8 @@ using DG.Tweening;
 using UnityEngine.Networking;
 using LitJson;
 
+using tutorial;
+
 public class HomePanelScript : MonoBehaviour
 {
 	public Image headIconImg;
@@ -67,6 +69,11 @@ public class HomePanelScript : MonoBehaviour
 		if (CommonEvent.getInstance().DisplayBroadcast != null) {
 			CommonEvent.getInstance().DisplayBroadcast();
 		}
+
+		staticc__ChoiceR_api choose = new staticc__ChoiceR_api();
+		choose.rtype = 0;
+		CustomSocket.getInstance().sendMsg(new ClientRequest(ApiCode.ChooseGameRequest).
+			SetContent<staticc__ChoiceR_api>(choose));
 	}
 
 
@@ -117,6 +124,8 @@ public class HomePanelScript : MonoBehaviour
 		SocketEventHandle.getInstance().cardChangeNotice += cardChangeNotice;
 		SocketEventHandle.getInstance().contactInfoResponse += contactInfoResponse;
 
+		SocketEventHandle.getInstance().ChooseGameCallBack += chooseGameCallBack;
+
 		//	SocketEventHandle.getInstance ().gameBroadcastNotice += gameBroadcastNotice;
 		CommonEvent.getInstance().DisplayBroadcast += gameBroadcastNotice;
 	}
@@ -126,6 +135,7 @@ public class HomePanelScript : MonoBehaviour
 		SocketEventHandle.getInstance().RoomBackResponse -= RoomBackResponse;
 		SocketEventHandle.getInstance().cardChangeNotice -= cardChangeNotice;
 		CommonEvent.getInstance().DisplayBroadcast -= gameBroadcastNotice;
+		SocketEventHandle.getInstance().ChooseGameCallBack -= chooseGameCallBack;
 		SocketEventHandle.getInstance().contactInfoResponse -= contactInfoResponse;
 		//	SocketEventHandle.getInstance ().gameBroadcastNotice -= gameBroadcastNotice;
 	}
@@ -152,14 +162,15 @@ public class HomePanelScript : MonoBehaviour
 	 */
 	private void initUI()
 	{
-		if (GlobalDataScript.loginResponseData != null) {
-			headIcon = GlobalDataScript.loginResponseData.account.headicon;
-			string nickName = GlobalDataScript.loginResponseData.account.nickname;
-			int roomCardcount = GlobalDataScript.loginResponseData.account.roomcard;
+		if (GlobalDataScript.playerInfo != null) {
+			headIcon = GlobalDataScript.playerInfo.headimgurl;
+			string nickName = GlobalDataScript.playerInfo.nickname;
+			//TODO
+			int roomCardcount = 0;//GlobalDataScript.loginResponseData.account.roomcard;
 			cardCountText.text = roomCardcount + "";
 			nickNameText.text = nickName;
-			IpText.text = "ID:" + GlobalDataScript.loginResponseData.account.uuid;
-			GlobalDataScript.loginResponseData.account.roomcard = roomCardcount;
+//			IpText.text = "ID:" + GlobalDataScript.loginResponseData.account.uuid;
+//			GlobalDataScript.loginResponseData.account.roomcard = roomCardcount;
 			Sprite tempSp;
 			if (string.IsNullOrEmpty(headIcon) == false) {
 				if (GlobalDataScript.imageMap.TryGetValue(headIcon, out tempSp)) {
@@ -217,6 +228,12 @@ public class HomePanelScript : MonoBehaviour
 		} else {
 			TipsManagerScript.getInstance().setTips("当前正在房间状态，无法创建房间");
 		}
+
+
+		staticc__ChoiceR_api choose = new staticc__ChoiceR_api();
+		choose.rtype = 0;
+		CustomSocket.getInstance().sendMsg(new ClientRequest(ApiCode.ChooseGameRequest).
+			SetContent<staticc__ChoiceR_api>(choose));
 	}
 
 	/***
@@ -307,6 +324,11 @@ public class HomePanelScript : MonoBehaviour
 			panelExitDialog.GetComponent<RectTransform>().offsetMax = new Vector2(0f, 0f);
 			panelExitDialog.GetComponent<RectTransform>().offsetMin = new Vector2(0f, 0f);
 		}
+	}
+
+	private void chooseGameCallBack(ClientResponse response)
+	{
+		
 	}
 
 	private void RoomBackResponse(ClientResponse response)

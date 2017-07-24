@@ -16,22 +16,23 @@ public class ClientRequest
 	public int totelLenght;
 	public byte[] content;
 
-	public ClientRequest ()
+	public ClientRequest()
 	{
 	}
 
-	public ClientRequest (int headCode)
+	public ClientRequest(int headCode)
 	{
 		this.headCode = headCode;
 	}
 
-	public ClientRequest SetContent<T> (T t)
+	public ClientRequest SetContent<T>(T t)
 	{
-		this.content = Serialize<T> (t);
+		this.content = Serialize<T>(t);
+		Debug.Log("Serialize content: " + content.Length);
 		return this;
 	}
 
-	public void setData ()
+	public void setData()
 	{
 	}
 
@@ -39,10 +40,10 @@ public class ClientRequest
 	/// 写入大端序的int
 	/// </summary>
 	/// <param name="value"></param>
-	public byte[] WriterInt (int value)
+	public byte[] WriterInt(int value)
 	{
-		byte[] bs = BitConverter.GetBytes (value);
-		Array.Reverse (bs);
+		byte[] bs = BitConverter.GetBytes(value);
+		Array.Reverse(bs);
 		return bs;
 	}
 
@@ -51,52 +52,52 @@ public class ClientRequest
 	/// </summary>
 	/// <returns>The short.</returns>
 	/// <param name="value">Value.</param>
-	public byte[] WriteShort (short value)
+	public byte[] WriteShort(short value)
 	{
-		byte[] bs = BitConverter.GetBytes (value);
-		Array.Reverse (bs);
+		byte[] bs = BitConverter.GetBytes(value);
+		Array.Reverse(bs);
 		return bs;
 	}
 
-	public byte[] WriterString (string value)
+	public byte[] WriterString(string value)
 	{
-		byte[] result = Encoding.UTF8.GetBytes (value);
+		byte[] result = Encoding.UTF8.GetBytes(value);
 		return result;
 	}
 
 	private static string EOF_MESSAGE = "\nE\nO\nF\n";
 
-	public byte[] ToBytes ()
+	public byte[] ToBytes()
 	{
 		byte[] _bytes; //自定义字节数组，用以装载消息协议
-		using (MemoryStream memoryStream = new MemoryStream ()) { //创建内存流
-			BinaryWriter binaryWriter = new BinaryWriter (memoryStream, UTF8Encoding.Default); //以二进制写入器往这个流里写内容
+		using (MemoryStream memoryStream = new MemoryStream()) { //创建内存流
+			BinaryWriter binaryWriter = new BinaryWriter(memoryStream, UTF8Encoding.Default); //以二进制写入器往这个流里写内容
 
 			bool isEmpty = content == null || content.Length == 0;
 			Len = 27 + (isEmpty ? 0 : content.Length);
 
-			binaryWriter.Write (WriterInt (Len));
-			binaryWriter.Write (WriterInt (headCode)); 
-			binaryWriter.Write (WriterInt (assistId)); 
-			binaryWriter.Write (WriterInt (handleCode)); 
-			binaryWriter.Write (WriterInt (reserveCode));
+			binaryWriter.Write(WriterInt(Len));
+			binaryWriter.Write(WriterInt(headCode)); 
+			binaryWriter.Write(WriterInt(assistId)); 
+			binaryWriter.Write(WriterInt(handleCode)); 
+			binaryWriter.Write(WriterInt(reserveCode));
 			if (!isEmpty) {
-				binaryWriter.Write (content); //write the messge content
+				binaryWriter.Write(content); //write the messge content
 			}
-			binaryWriter.Write (WriterString(EOF_MESSAGE));//write the EOF symbol
+			binaryWriter.Write(WriterString(EOF_MESSAGE));//write the EOF symbol
 
-			_bytes = memoryStream.ToArray (); 
-			binaryWriter.Close ();
+			_bytes = memoryStream.ToArray(); 
+			binaryWriter.Close();
 		}
 		totelLenght = _bytes.Length;
 		return _bytes; //返回填充好消息协议对象的自定义字节数组
 	}
 
-	public static byte[] Serialize<T> (T t)
+	public static byte[] Serialize<T>(T t)
 	{
-		using (MemoryStream ms = new MemoryStream ()) {
-			ProtoBuf.Serializer.Serialize<T> (ms, t);
-			return ms.ToArray ();
+		using (MemoryStream ms = new MemoryStream()) {
+			ProtoBuf.Serializer.Serialize<T>(ms, t);
+			return ms.ToArray();
 		}
 	}
 
@@ -106,10 +107,10 @@ public class ClientRequest
 	/// <typeparam name="T"></typeparam>
 	/// <param name="content"></param>
 	/// <returns></returns>
-	public static T DeSerialize<T> (byte[] content)
+	public static T DeSerialize<T>(byte[] content)
 	{
-		using (MemoryStream ms = new MemoryStream (content)) {
-			T t = ProtoBuf.Serializer.Deserialize<T> (ms);
+		using (MemoryStream ms = new MemoryStream(content)) {
+			T t = ProtoBuf.Serializer.Deserialize<T>(ms);
 			return t;
 		}
 	}

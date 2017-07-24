@@ -22,7 +22,7 @@ public class ApiCode
 	public const int LogoutRequest = 102;
 
 	public const int StaticFlowRequest = 103;
-	public const int ChoiceRequest = 104;
+	public const int ChooseGameRequest = 104;
 
 	//创建房间
 	public const int CreateRoomRequest = 105;

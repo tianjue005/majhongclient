@@ -18,16 +18,16 @@ public class GamePreferences
 	{
 	}
 
-	public static int GetUniqueId()
-	{
-		return PlayerPrefs.GetInt("UniqueId", -1);
-	}
-
-	public static void SetUniqueId(int id)
-	{
-		PlayerPrefs.SetInt("UniqueId", id);
-	}
-
+//	public static int GetUniqueId()
+//	{
+//		return PlayerPrefs.GetInt("UniqueId", -1);
+//	}
+//
+//	public static void SetUniqueId(int id)
+//	{
+//		PlayerPrefs.SetInt("UniqueId", id);
+//	}
+//
 
 	//======================================
 

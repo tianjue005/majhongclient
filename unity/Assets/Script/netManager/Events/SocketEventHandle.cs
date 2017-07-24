@@ -14,8 +14,11 @@ public class SocketEventHandle : MonoBehaviour
 
 	public delegate void ServerDisconnectCallBackEvent();
 
+	public ServerCallBackEvent LoginWeChatCallBack;
+
 	public ServerCallBackEvent LoginCallBack;
 	//登录回调
+	public ServerCallBackEvent ChooseGameCallBack;
 
 	public ServerCallBackEvent CreateRoomCallBack;
 	//创建房间回调
@@ -192,11 +195,22 @@ public class SocketEventHandle : MonoBehaviour
 				TipsManagerScript.getInstance().setTips("服务器关闭了");
 				CustomSocket.getInstance().closeSocket();
 				break;
-			case APIS.LOGIN_RESPONSE:
-				if (LoginCallBack != null) {
+			case ApiCode.LoginSessionRequest:
+//			case APIS.LOGIN_RESPONSE:
+				if (LoginCallBack != null)
 					LoginCallBack(response);
-				}
 				break;
+
+			case ApiCode.LoginWeChatRequest:
+				if (LoginWeChatCallBack != null)
+					LoginWeChatCallBack(response);
+				break;
+
+			case ApiCode.ChooseGameRequest:
+				if (ChooseGameCallBack != null)
+					ChooseGameCallBack(response);
+				break;
+
 			case APIS.CREATEROOM_RESPONSE:
 				if (CreateRoomCallBack != null) {
 					CreateRoomCallBack(response);

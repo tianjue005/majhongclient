@@ -5,13 +5,19 @@ using System.Collections.Generic;
 using System.Net;
 using System.IO;
 using System.Text;
+using tutorial;
+using ProtoBuf;
 
 public class GlobalDataScript
 {
 
+	public static user_info playerInfo;
+
 	public static bool isDrag = false;
 	/**登陆返回数据**/
 	public static AvatarVO loginResponseData;
+
+
 
 	/**加入房间返回数据**/
 	public static RoomJoinResponseVo roomJoinResponseData;

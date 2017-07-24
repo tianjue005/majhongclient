@@ -7,8 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from: proto/game_engine.proto
-namespace tutorial2
+// Generated from: game_engine.proto
+// Note: requires additional types generated from: game_server.proto
+namespace tutorial
 {
   [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"game_output_info")]
   public partial class game_output_info : global::ProtoBuf.IExtensible
@@ -25,26 +26,26 @@ namespace tutorial2
       set { _room_status = value; }
     }
 
-    private tutorial2.ju_status _after = null;
+    private tutorial.ju_status _after = null;
     [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"after", DataFormat = global::ProtoBuf.DataFormat.Default)]
     [global::System.ComponentModel.DefaultValue(null)]
-    public tutorial2.ju_status after
+    public tutorial.ju_status after
     {
       get { return _after; }
       set { _after = value; }
     }
-    private readonly global::System.Collections.Generic.List<tutorial2.game_input_info> _changes = new global::System.Collections.Generic.List<tutorial2.game_input_info>();
+    private readonly global::System.Collections.Generic.List<tutorial.game_input_info> _changes = new global::System.Collections.Generic.List<tutorial.game_input_info>();
     [global::ProtoBuf.ProtoMember(3, Name=@"changes", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public global::System.Collections.Generic.List<tutorial2.game_input_info> changes
+    public global::System.Collections.Generic.List<tutorial.game_input_info> changes
     {
       get { return _changes; }
     }
   
 
-    private tutorial2.money_change_list_unit _money_inout_list = null;
+    private tutorial.money_change_list_unit _money_inout_list = null;
     [global::ProtoBuf.ProtoMember(4, IsRequired = false, Name=@"money_inout_list", DataFormat = global::ProtoBuf.DataFormat.Default)]
     [global::System.ComponentModel.DefaultValue(null)]
-    public tutorial2.money_change_list_unit money_inout_list
+    public tutorial.money_change_list_unit money_inout_list
     {
       get { return _money_inout_list; }
       set { _money_inout_list = value; }
@@ -67,9 +68,9 @@ namespace tutorial2
       get { return _is_over; }
       set { _is_over = value; }
     }
-    private readonly global::System.Collections.Generic.List<tutorial2.win_unit> _win_method = new global::System.Collections.Generic.List<tutorial2.win_unit>();
+    private readonly global::System.Collections.Generic.List<tutorial.win_unit> _win_method = new global::System.Collections.Generic.List<tutorial.win_unit>();
     [global::ProtoBuf.ProtoMember(8, Name=@"win_method", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public global::System.Collections.Generic.List<tutorial2.win_unit> win_method
+    public global::System.Collections.Generic.List<tutorial.win_unit> win_method
     {
       get { return _win_method; }
     }
@@ -110,16 +111,16 @@ namespace tutorial2
       get { return _seconds; }
       set { _seconds = value; }
     }
-    private readonly global::System.Collections.Generic.List<tutorial2.ready_to_start> _ready_list = new global::System.Collections.Generic.List<tutorial2.ready_to_start>();
+    private readonly global::System.Collections.Generic.List<tutorial.ready_to_start> _ready_list = new global::System.Collections.Generic.List<tutorial.ready_to_start>();
     [global::ProtoBuf.ProtoMember(15, Name=@"ready_list", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public global::System.Collections.Generic.List<tutorial2.ready_to_start> ready_list
+    public global::System.Collections.Generic.List<tutorial.ready_to_start> ready_list
     {
       get { return _ready_list; }
     }
   
-    private readonly global::System.Collections.Generic.List<tutorial2.user_info> _user_profile = new global::System.Collections.Generic.List<tutorial2.user_info>();
+    private readonly global::System.Collections.Generic.List<tutorial.user_info> _user_profile = new global::System.Collections.Generic.List<tutorial.user_info>();
     [global::ProtoBuf.ProtoMember(16, Name=@"user_profile", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public global::System.Collections.Generic.List<tutorial2.user_info> user_profile
+    public global::System.Collections.Generic.List<tutorial.user_info> user_profile
     {
       get { return _user_profile; }
     }
@@ -170,9 +171,9 @@ namespace tutorial2
   {
     public ju_status() {}
     
-    private readonly global::System.Collections.Generic.List<tutorial2.player_dict> _player_list = new global::System.Collections.Generic.List<tutorial2.player_dict>();
+    private readonly global::System.Collections.Generic.List<tutorial.player_dict> _player_list = new global::System.Collections.Generic.List<tutorial.player_dict>();
     [global::ProtoBuf.ProtoMember(1, Name=@"player_list", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public global::System.Collections.Generic.List<tutorial2.player_dict> player_list
+    public global::System.Collections.Generic.List<tutorial.player_dict> player_list
     {
       get { return _player_list; }
     }
@@ -187,10 +188,10 @@ namespace tutorial2
       set { _point = value; }
     }
 
-    private tutorial2.pai _fresh_drop_pai = null;
+    private tutorial.pai _fresh_drop_pai = null;
     [global::ProtoBuf.ProtoMember(3, IsRequired = false, Name=@"fresh_drop_pai", DataFormat = global::ProtoBuf.DataFormat.Default)]
     [global::System.ComponentModel.DefaultValue(null)]
-    public tutorial2.pai fresh_drop_pai
+    public tutorial.pai fresh_drop_pai
     {
       get { return _fresh_drop_pai; }
       set { _fresh_drop_pai = value; }
@@ -223,10 +224,10 @@ namespace tutorial2
       set { _win_limit = value; }
     }
 
-    private tutorial2.pai _zhufeng = null;
+    private tutorial.pai _zhufeng = null;
     [global::ProtoBuf.ProtoMember(7, IsRequired = false, Name=@"zhufeng", DataFormat = global::ProtoBuf.DataFormat.Default)]
     [global::System.ComponentModel.DefaultValue(null)]
-    public tutorial2.pai zhufeng
+    public tutorial.pai zhufeng
     {
       get { return _zhufeng; }
       set { _zhufeng = value; }
@@ -323,133 +324,6 @@ namespace tutorial2
       { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
   }
   
-  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"user_info")]
-  public partial class user_info : global::ProtoBuf.IExtensible
-  {
-    public user_info() {}
-    
-
-    private string _nickname = "";
-    [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"nickname", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    [global::System.ComponentModel.DefaultValue("")]
-    public string nickname
-    {
-      get { return _nickname; }
-      set { _nickname = value; }
-    }
-
-    private int _sex = default(int);
-    [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"sex", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    [global::System.ComponentModel.DefaultValue(default(int))]
-    public int sex
-    {
-      get { return _sex; }
-      set { _sex = value; }
-    }
-
-    private string _photo_url = "";
-    [global::ProtoBuf.ProtoMember(3, IsRequired = false, Name=@"photo_url", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    [global::System.ComponentModel.DefaultValue("")]
-    public string photo_url
-    {
-      get { return _photo_url; }
-      set { _photo_url = value; }
-    }
-
-    private int _level = default(int);
-    [global::ProtoBuf.ProtoMember(4, IsRequired = false, Name=@"level", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    [global::System.ComponentModel.DefaultValue(default(int))]
-    public int level
-    {
-      get { return _level; }
-      set { _level = value; }
-    }
-
-    private int _score = default(int);
-    [global::ProtoBuf.ProtoMember(5, IsRequired = false, Name=@"score", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    [global::System.ComponentModel.DefaultValue(default(int))]
-    public int score
-    {
-      get { return _score; }
-      set { _score = value; }
-    }
-
-    private int _card = default(int);
-    [global::ProtoBuf.ProtoMember(6, IsRequired = false, Name=@"card", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    [global::System.ComponentModel.DefaultValue(default(int))]
-    public int card
-    {
-      get { return _card; }
-      set { _card = value; }
-    }
-
-    private int _zuan = default(int);
-    [global::ProtoBuf.ProtoMember(7, IsRequired = false, Name=@"zuan", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    [global::System.ComponentModel.DefaultValue(default(int))]
-    public int zuan
-    {
-      get { return _zuan; }
-      set { _zuan = value; }
-    }
-
-    private int _gold = default(int);
-    [global::ProtoBuf.ProtoMember(8, IsRequired = false, Name=@"gold", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    [global::System.ComponentModel.DefaultValue(default(int))]
-    public int gold
-    {
-      get { return _gold; }
-      set { _gold = value; }
-    }
-
-    private int _total_score_win = default(int);
-    [global::ProtoBuf.ProtoMember(9, IsRequired = false, Name=@"total_score_win", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    [global::System.ComponentModel.DefaultValue(default(int))]
-    public int total_score_win
-    {
-      get { return _total_score_win; }
-      set { _total_score_win = value; }
-    }
-
-    private int _total_score_lose = default(int);
-    [global::ProtoBuf.ProtoMember(10, IsRequired = false, Name=@"total_score_lose", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    [global::System.ComponentModel.DefaultValue(default(int))]
-    public int total_score_lose
-    {
-      get { return _total_score_lose; }
-      set { _total_score_lose = value; }
-    }
-
-    private int _user_point = default(int);
-    [global::ProtoBuf.ProtoMember(11, IsRequired = false, Name=@"user_point", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    [global::System.ComponentModel.DefaultValue(default(int))]
-    public int user_point
-    {
-      get { return _user_point; }
-      set { _user_point = value; }
-    }
-
-    private int _user_id = default(int);
-    [global::ProtoBuf.ProtoMember(12, IsRequired = false, Name=@"user_id", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    [global::System.ComponentModel.DefaultValue(default(int))]
-    public int user_id
-    {
-      get { return _user_id; }
-      set { _user_id = value; }
-    }
-
-    private string _session_id = "";
-    [global::ProtoBuf.ProtoMember(13, IsRequired = false, Name=@"session_id", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    [global::System.ComponentModel.DefaultValue("")]
-    public string session_id
-    {
-      get { return _session_id; }
-      set { _session_id = value; }
-    }
-    private global::ProtoBuf.IExtension extensionObject;
-    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
-  }
-  
   [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"player_dict")]
   public partial class player_dict : global::ProtoBuf.IExtensible
   {
@@ -474,24 +348,24 @@ namespace tutorial2
       set { _user_point = value; }
     }
 
-    private tutorial2.pai_list_dict _pai_list_dict = null;
+    private tutorial.pai_list_dict _pai_list_dict = null;
     [global::ProtoBuf.ProtoMember(3, IsRequired = false, Name=@"pai_list_dict", DataFormat = global::ProtoBuf.DataFormat.Default)]
     [global::System.ComponentModel.DefaultValue(null)]
-    public tutorial2.pai_list_dict pai_list_dict
+    public tutorial.pai_list_dict pai_list_dict
     {
       get { return _pai_list_dict; }
       set { _pai_list_dict = value; }
     }
-    private readonly global::System.Collections.Generic.List<tutorial2.remind_unit> _remind_list = new global::System.Collections.Generic.List<tutorial2.remind_unit>();
+    private readonly global::System.Collections.Generic.List<tutorial.remind_unit> _remind_list = new global::System.Collections.Generic.List<tutorial.remind_unit>();
     [global::ProtoBuf.ProtoMember(4, Name=@"remind_list", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public global::System.Collections.Generic.List<tutorial2.remind_unit> remind_list
+    public global::System.Collections.Generic.List<tutorial.remind_unit> remind_list
     {
       get { return _remind_list; }
     }
   
-    private readonly global::System.Collections.Generic.List<tutorial2.remind_unit> _room_remind_list = new global::System.Collections.Generic.List<tutorial2.remind_unit>();
+    private readonly global::System.Collections.Generic.List<tutorial.remind_unit> _room_remind_list = new global::System.Collections.Generic.List<tutorial.remind_unit>();
     [global::ProtoBuf.ProtoMember(5, Name=@"room_remind_list", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public global::System.Collections.Generic.List<tutorial2.remind_unit> room_remind_list
+    public global::System.Collections.Generic.List<tutorial.remind_unit> room_remind_list
     {
       get { return _room_remind_list; }
     }
@@ -506,30 +380,30 @@ namespace tutorial2
   {
     public pai_list_dict() {}
     
-    private readonly global::System.Collections.Generic.List<tutorial2.pai_list> _liang_pai = new global::System.Collections.Generic.List<tutorial2.pai_list>();
+    private readonly global::System.Collections.Generic.List<tutorial.pai_list> _liang_pai = new global::System.Collections.Generic.List<tutorial.pai_list>();
     [global::ProtoBuf.ProtoMember(1, Name=@"liang_pai", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public global::System.Collections.Generic.List<tutorial2.pai_list> liang_pai
+    public global::System.Collections.Generic.List<tutorial.pai_list> liang_pai
     {
       get { return _liang_pai; }
     }
   
-    private readonly global::System.Collections.Generic.List<tutorial2.pai> _qi_pai = new global::System.Collections.Generic.List<tutorial2.pai>();
+    private readonly global::System.Collections.Generic.List<tutorial.pai> _qi_pai = new global::System.Collections.Generic.List<tutorial.pai>();
     [global::ProtoBuf.ProtoMember(2, Name=@"qi_pai", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public global::System.Collections.Generic.List<tutorial2.pai> qi_pai
+    public global::System.Collections.Generic.List<tutorial.pai> qi_pai
     {
       get { return _qi_pai; }
     }
   
-    private readonly global::System.Collections.Generic.List<tutorial2.pai> _hand_pai = new global::System.Collections.Generic.List<tutorial2.pai>();
+    private readonly global::System.Collections.Generic.List<tutorial.pai> _hand_pai = new global::System.Collections.Generic.List<tutorial.pai>();
     [global::ProtoBuf.ProtoMember(3, Name=@"hand_pai", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public global::System.Collections.Generic.List<tutorial2.pai> hand_pai
+    public global::System.Collections.Generic.List<tutorial.pai> hand_pai
     {
       get { return _hand_pai; }
     }
   
-    private readonly global::System.Collections.Generic.List<tutorial2.pai> _zhuifeng_pai = new global::System.Collections.Generic.List<tutorial2.pai>();
+    private readonly global::System.Collections.Generic.List<tutorial.pai> _zhuifeng_pai = new global::System.Collections.Generic.List<tutorial.pai>();
     [global::ProtoBuf.ProtoMember(4, Name=@"zhuifeng_pai", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public global::System.Collections.Generic.List<tutorial2.pai> zhuifeng_pai
+    public global::System.Collections.Generic.List<tutorial.pai> zhuifeng_pai
     {
       get { return _zhuifeng_pai; }
     }
@@ -554,17 +428,17 @@ namespace tutorial2
       set { _remind_type = value; }
     }
 
-    private tutorial2.pai _remind_pai = null;
+    private tutorial.pai _remind_pai = null;
     [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"remind_pai", DataFormat = global::ProtoBuf.DataFormat.Default)]
     [global::System.ComponentModel.DefaultValue(null)]
-    public tutorial2.pai remind_pai
+    public tutorial.pai remind_pai
     {
       get { return _remind_pai; }
       set { _remind_pai = value; }
     }
-    private readonly global::System.Collections.Generic.List<tutorial2.ting_dict> _ting_dict_list = new global::System.Collections.Generic.List<tutorial2.ting_dict>();
+    private readonly global::System.Collections.Generic.List<tutorial.ting_dict> _ting_dict_list = new global::System.Collections.Generic.List<tutorial.ting_dict>();
     [global::ProtoBuf.ProtoMember(3, Name=@"ting_dict_list", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public global::System.Collections.Generic.List<tutorial2.ting_dict> ting_dict_list
+    public global::System.Collections.Generic.List<tutorial.ting_dict> ting_dict_list
     {
       get { return _ting_dict_list; }
     }
@@ -580,17 +454,17 @@ namespace tutorial2
     public ting_dict() {}
     
 
-    private tutorial2.pai _pai_select_drop = null;
+    private tutorial.pai _pai_select_drop = null;
     [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"pai_select_drop", DataFormat = global::ProtoBuf.DataFormat.Default)]
     [global::System.ComponentModel.DefaultValue(null)]
-    public tutorial2.pai pai_select_drop
+    public tutorial.pai pai_select_drop
     {
       get { return _pai_select_drop; }
       set { _pai_select_drop = value; }
     }
-    private readonly global::System.Collections.Generic.List<tutorial2.ting_score> _ting_score = new global::System.Collections.Generic.List<tutorial2.ting_score>();
+    private readonly global::System.Collections.Generic.List<tutorial.ting_score> _ting_score = new global::System.Collections.Generic.List<tutorial.ting_score>();
     [global::ProtoBuf.ProtoMember(2, Name=@"ting_score", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public global::System.Collections.Generic.List<tutorial2.ting_score> ting_score
+    public global::System.Collections.Generic.List<tutorial.ting_score> ting_score
     {
       get { return _ting_score; }
     }
@@ -606,10 +480,10 @@ namespace tutorial2
     public ting_score() {}
     
 
-    private tutorial2.pai _win_pai = null;
+    private tutorial.pai _win_pai = null;
     [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"win_pai", DataFormat = global::ProtoBuf.DataFormat.Default)]
     [global::System.ComponentModel.DefaultValue(null)]
-    public tutorial2.pai win_pai
+    public tutorial.pai win_pai
     {
       get { return _win_pai; }
       set { _win_pai = value; }
@@ -679,10 +553,10 @@ namespace tutorial2
       set { _session_id = value; }
     }
 
-    private tutorial2.pai _target_pai = null;
+    private tutorial.pai _target_pai = null;
     [global::ProtoBuf.ProtoMember(6, IsRequired = false, Name=@"target_pai", DataFormat = global::ProtoBuf.DataFormat.Default)]
     [global::System.ComponentModel.DefaultValue(null)]
-    public tutorial2.pai target_pai
+    public tutorial.pai target_pai
     {
       get { return _target_pai; }
       set { _target_pai = value; }
@@ -835,9 +709,9 @@ namespace tutorial2
   {
     public pai_list() {}
     
-    private readonly global::System.Collections.Generic.List<tutorial2.pai> _pai = new global::System.Collections.Generic.List<tutorial2.pai>();
+    private readonly global::System.Collections.Generic.List<tutorial.pai> _pai = new global::System.Collections.Generic.List<tutorial.pai>();
     [global::ProtoBuf.ProtoMember(1, Name=@"pai", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public global::System.Collections.Generic.List<tutorial2.pai> pai
+    public global::System.Collections.Generic.List<tutorial.pai> pai
     {
       get { return _pai; }
     }

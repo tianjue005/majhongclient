@@ -355,15 +355,15 @@ public class CustomSocket
 		response.assistId = assistId;
 		response.handleCode = handleCode;
 		response.reserveCode = reserveCode;
-		if (lens > 21) {
-			response.bytes = buffers.ReadBytes(lens - 21);
+		if (lens > 27) {
+			response.bytes = buffers.ReadBytes(lens - 27);
 		}
 		if (headcode != APIS.HeadRESPONSE) {
 			Debug.Log("response msg,  head code: " + response.headCode);
 		}
 		SocketEventHandle.getInstance().addResponse(response);
 
-		buffers.ReadBytes(1);//read the EOF symbol
+		buffers.ReadBytes(7);//read the EOF symbol
 
 		if (buffers.BaseStream.Position < buffers.BaseStream.Length) {
 			readBuffer(buffers);

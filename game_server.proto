@@ -1,4 +1,4 @@
-package tutorial;
+﻿package tutorial;
 //一定要读的内容：所有来往于客户端与服务器的TCP数据包都必须以5个数字开头，这是保留的头格式，头格式总共是20个字节。
 //头格式的第一个数字的作用是用来定位后续跟的二进制对应的protobuf的包格式，这样保证了可扩展性，这一位称之为首位保留位
 //头格式的后面四个数字的作用是保留的，可以用于特殊定义的一些例外处理，从而省去解析后续二进制的过程
@@ -160,7 +160,7 @@ message user_info {
 message choice_info {
     optional string name = 1;// 玩法、局数、坐庄、癞子、房费、底分、最大抢庄
     repeated string choice = 2;
-    optional int32 default = 3;
+    optional int32 index = 3;
 }
 
 message additional_price_unit{ //作为choice的一个扩展，当

@@ -71,7 +71,7 @@ public class HomePanelScript : MonoBehaviour
 		}
 
 		staticc__ChoiceR_api choose = new staticc__ChoiceR_api();
-		choose.rtype = 0;
+		choose.rtype = 999999;
 		CustomSocket.getInstance().sendMsg(new ClientRequest(ApiCode.ChooseGameRequest).
 			SetContent<staticc__ChoiceR_api>(choose));
 	}
@@ -328,7 +328,19 @@ public class HomePanelScript : MonoBehaviour
 
 	private void chooseGameCallBack(ClientResponse response)
 	{
-		
+		if (response.handleCode == StatusCode.SESSION_expire ||
+			response.handleCode == StatusCode.SESSION_invalid || response.bytes == null) {
+			Debug.Log(" error ");
+			return;
+		}
+		staticc__ChoiceR_response res = ClientRequest.DeSerialize<staticc__ChoiceR_response>(response.bytes);
+		for(int i = 0;i<res.choice_info.Count;i++){
+			choice_info item = res.choice_info[i];
+			Debug.Log("i: " + item.name + "  " + item.choice.Count);// + "  " + item.default);
+			for(int j = 0;j<item.choice.Count;j++){
+				Debug.Log("");
+			}
+		}
 	}
 
 	private void RoomBackResponse(ClientResponse response)

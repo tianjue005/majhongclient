@@ -1,14 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Home_Panel_Event\HomePanelScript.cs">
     <Files>
-      <File FileName="Assets/Script/utilTool/GlobalDataScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Script/netManager/vo/AvatarVO.cs" Line="1" Column="1" />
-      <File FileName="Assets/Script/Home_Panel_Event/HomePanelScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Script/netManager/Events/SocketEventHandle.cs" Line="1" Column="1" />
-      <File FileName="Assets/Script/netManager/CustomSocket.cs" Line="1" Column="1" />
-      <File FileName="Assets/Script/netManager/ClientRequest.cs" Line="1" Column="1" />
-      <File FileName="Assets/Script/Login_Panle_Event/LoginSystemScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\utilTool\GlobalDataScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Home_Panel_Event\HomePanelScript.cs" Line="343" Column="4" />
+      <File FileName="Assets\Script\netManager\Events\SocketEventHandle.cs" Line="21" Column="2" />
+      <File FileName="Assets\Script\netManager\CustomSocket.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\netManager\ClientRequest.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Login_Panle_Event\LoginSystemScript.cs" Line="146" Column="91" />
+      <File FileName="Assets\Script\netManager\Events\APIS.cs" Line="18" Column="38" />
+      <File FileName="Assets\ScriptNew\ApiCode.cs" Line="25" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -13,8 +13,8 @@ public class APIS
 	public const string DNS = "tcp://52.15.183.149";
 	public const int DNS_PORT = 12974;
 
-//	public const string SocketUrl = "59.110.48.26";
-	public const string SocketUrl = "52.15.183.149";
+	public const string SocketUrl = "59.110.48.26";
+//	public const string SocketUrl = "52.15.183.149";
 	public const int SocketPort = 14333;
 	public const int ChatPort = 9502;
 

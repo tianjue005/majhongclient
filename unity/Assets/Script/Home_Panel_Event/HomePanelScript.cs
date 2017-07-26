@@ -334,6 +334,7 @@ public class HomePanelScript : MonoBehaviour
 			return;
 		}
 		staticc__ChoiceR_response res = ClientRequest.DeSerialize<staticc__ChoiceR_response>(response.bytes);
+		GlobalDataScript.roomParameters = res;
 		for(int i = 0;i<res.choice_info.Count;i++){
 			choice_info item = res.choice_info[i];
 			Debug.Log("i: " + item.name + "  " + item.choice.Count);// + "  " + item.default);

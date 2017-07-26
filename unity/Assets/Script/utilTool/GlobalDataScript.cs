@@ -12,6 +12,7 @@ public class GlobalDataScript
 {
 
 	public static user_info playerInfo;
+	public static staticc__ChoiceR_response roomParameters; 
 
 	public static bool isDrag = false;
 	/**登陆返回数据**/

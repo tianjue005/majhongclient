@@ -23,18 +23,9 @@ public class ApiCode
 
 	public const int StaticFlowRequest = 103;
 	public const int ChooseGameRequest = 104;
-
-	//创建房间
 	public const int CreateRoomRequest = 105;
-	public const int JoinRoomRequest = 7;
+	//	public const int JoinRoomRequest = 106;
 
-	//主动离开房间
-	public const int LeaveRoomRequest = 9;
-	public const int HeartResponse = 2;
-	public const int LoginWechatResponse = 4;
-	public const int LoginSessionResponse = 102;
-	public const int CreateRoomResponse = 6;
-	public const int JoinRoomResponse = 8;
-	public const int LeaveRoomResponse = 10;
+	public const int CODE_ZERO = 999999;
 
 }

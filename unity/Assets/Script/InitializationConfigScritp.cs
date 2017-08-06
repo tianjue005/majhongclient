@@ -64,9 +64,9 @@ public class InitializationConfigScritp : MonoBehaviour
 			SocketEventHandle.getInstance().CreateRoomCallBack = null;
 		}
 
-		if (SocketEventHandle.getInstance().JoinRoomCallBack != null) {
-			SocketEventHandle.getInstance().JoinRoomCallBack = null;
-		}
+//		if (SocketEventHandle.getInstance().JoinRoomCallBack != null) {
+//			SocketEventHandle.getInstance().JoinRoomCallBack = null;
+//		}
 
 		if (SocketEventHandle.getInstance().StartGameNotice != null) {
 			SocketEventHandle.getInstance().StartGameNotice = null;

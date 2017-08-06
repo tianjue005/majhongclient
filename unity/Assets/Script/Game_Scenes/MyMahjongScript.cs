@@ -485,7 +485,7 @@ public class MyMahjongScript : MonoBehaviour
 
 	public void ShowLeavedCardsNumForInit()
 	{
-		RoomCreateVo roomCreateVo = GlobalDataScript.roomVo;
+//		RoomCreateVo roomCreateVo = GlobalDataScript.roomVo;
 
 		LeavedCardsNum = 144; //麻将的总数
 		LeavedCardsNum = LeavedCardsNum - 53; //除去玩家的手牌剩余的牌数
@@ -2263,28 +2263,29 @@ public class MyMahjongScript : MonoBehaviour
 
 	public void setRoomRemark()
 	{
-		RoomCreateVo roomvo = GlobalDataScript.roomVo;
-		GlobalDataScript.totalTimes = roomvo.realRoundNumber();
-		GlobalDataScript.surplusTimes = roomvo.realRoundNumber();
-		GlobalDataScript.gameOver = false;
-		roomNumber.text = "" + roomvo.roomId;
-		roomPaofen.text = "" + roomvo.realPaofen();
-		string str = "";
-		if (roomvo.roundtype == 0) {
-			str += "进园子 ";
-			str += roomvo.realYuanzishu() + "\n";
-			str += roomvo.realYuanziRule() + "家干\n";
-		} else {
-			str += "敞开头 ";
-			str += roomvo.realRoundNumber() + "局\n";
-		}
-		if (roomvo.zashu > 0) {
-			str += "砸" + roomvo.realZaShu() + " ";
-		}
-		if (roomvo.zhanzhuangbi) {
-			str += "比下胡 ";
-		}
-		roomRule.text = str;
+//		RoomCreateVo roomvo = GlobalDataScript.roomVo;
+//		GlobalDataScript.totalTimes = roomvo.realRoundNumber();
+//		GlobalDataScript.surplusTimes = roomvo.realRoundNumber();
+//		GlobalDataScript.gameOver = false;
+//		roomNumber.text = "" + roomvo.roomId;
+//		roomPaofen.text = "" + roomvo.realPaofen();
+//		string str = "";
+//		if (roomvo.roundtype == 0) {
+//			str += "进园子 ";
+//			str += roomvo.realYuanzishu() + "\n";
+//			str += roomvo.realYuanziRule() + "家干\n";
+//		} else {
+//			str += "敞开头 ";
+//			str += roomvo.realRoundNumber() + "局\n";
+//		}
+//		if (roomvo.zashu > 0) {
+//			str += "砸" + roomvo.realZaShu() + " ";
+//		}
+//		if (roomvo.zhanzhuangbi) {
+//			str += "比下胡 ";
+//		}
+//		roomRule.text = str;
+		roomRule.text = "比下胡 ";
 	}
 
 	private void addAvatarVOToList(AvatarVO avatar)
@@ -2298,7 +2299,7 @@ public class MyMahjongScript : MonoBehaviour
 
 	public void createRoomAddAvatarVO(AvatarVO avatar)
 	{
-		avatar.scores = GlobalDataScript.roomVo.realScore();
+//		avatar.scores = GlobalDataScript.roomVo.realScore();
 		addAvatarVOToList(avatar);
 		setRoomRemark();
 		readyGame();
@@ -2309,7 +2310,7 @@ public class MyMahjongScript : MonoBehaviour
 	{
 		avatarList = avatars;
 		for (int i = 0; i < avatars.Count; i++) {
-			avatars [i].scores = GlobalDataScript.roomVo.realScore();
+//			avatars [i].scores = GlobalDataScript.roomVo.realScore();
 			setSeat(avatars [i]);
 		}
 		setRoomRemark();
@@ -2562,7 +2563,7 @@ public class MyMahjongScript : MonoBehaviour
 	{
 		SoundCtrl.getInstance().playSoundUI();
 		OutRoomRequestVo vo = new OutRoomRequestVo();
-		vo.roomId = GlobalDataScript.roomVo.roomId;
+//		vo.roomId = GlobalDataScript.roomVo.roomId;
 		string sendMsg = JsonMapper.ToJson(vo);
 		CustomSocket.getInstance().sendMsg(new OutRoomRequest(sendMsg));
 	}
@@ -2672,7 +2673,7 @@ public class MyMahjongScript : MonoBehaviour
 	{
 		GlobalDataScript.loginResponseData.resetData();//复位房间数据
 		GlobalDataScript.loginResponseData.roomId = 0;//复位房间数据
-		GlobalDataScript.roomVo.roomId = 0;
+//		GlobalDataScript.roomVo.roomId = 0;
 		GlobalDataScript.soundToggle = true;
 		clean();
 		removeListener();
@@ -2731,26 +2732,26 @@ public class MyMahjongScript : MonoBehaviour
 	{
 		if (GlobalDataScript.reEnterRoomData != null) {
 			//显示房间基本信息
-			GlobalDataScript.roomVo.addWordCard = GlobalDataScript.reEnterRoomData.addWordCard;
-			GlobalDataScript.roomVo.hong = GlobalDataScript.reEnterRoomData.hong;
-			GlobalDataScript.roomVo.name = GlobalDataScript.reEnterRoomData.name;
-			GlobalDataScript.roomVo.roomId = GlobalDataScript.reEnterRoomData.roomId;
-			GlobalDataScript.roomVo.roomType = GlobalDataScript.reEnterRoomData.roomType;
-			GlobalDataScript.roomVo.roundNumber = GlobalDataScript.reEnterRoomData.roundNumber;
-			GlobalDataScript.roomVo.sevenDouble = GlobalDataScript.reEnterRoomData.sevenDouble;
-			GlobalDataScript.roomVo.xiaYu = GlobalDataScript.reEnterRoomData.xiaYu;
-			GlobalDataScript.roomVo.ziMo = GlobalDataScript.reEnterRoomData.ziMo;
-			GlobalDataScript.roomVo.magnification = GlobalDataScript.reEnterRoomData.magnification;
-			GlobalDataScript.roomVo.chengbei = GlobalDataScript.reEnterRoomData.chengbei;
-			GlobalDataScript.roomVo.zashu = GlobalDataScript.reEnterRoomData.zashu;
-			GlobalDataScript.roomVo.aa = GlobalDataScript.reEnterRoomData.aa;
-			GlobalDataScript.roomVo.paofen = GlobalDataScript.reEnterRoomData.paofen;
-			GlobalDataScript.roomVo.roundtype = GlobalDataScript.reEnterRoomData.roundtype;
-			GlobalDataScript.roomVo.yuanzishu = GlobalDataScript.reEnterRoomData.yuanzishu;
-			GlobalDataScript.roomVo.yuanzijiesu = GlobalDataScript.reEnterRoomData.yuanzijiesu;
-			GlobalDataScript.roomVo.zhanzhuangbi = GlobalDataScript.reEnterRoomData.zhanzhuangbi;
-			GlobalDataScript.roomVo.guozhuangbi = GlobalDataScript.reEnterRoomData.guozhuangbi;
-			GlobalDataScript.roomVo.fengfa = GlobalDataScript.reEnterRoomData.fengfa;
+//			GlobalDataScript.roomVo.addWordCard = GlobalDataScript.reEnterRoomData.addWordCard;
+//			GlobalDataScript.roomVo.hong = GlobalDataScript.reEnterRoomData.hong;
+//			GlobalDataScript.roomVo.name = GlobalDataScript.reEnterRoomData.name;
+//			GlobalDataScript.roomVo.roomId = GlobalDataScript.reEnterRoomData.roomId;
+//			GlobalDataScript.roomVo.roomType = GlobalDataScript.reEnterRoomData.roomType;
+//			GlobalDataScript.roomVo.roundNumber = GlobalDataScript.reEnterRoomData.roundNumber;
+//			GlobalDataScript.roomVo.sevenDouble = GlobalDataScript.reEnterRoomData.sevenDouble;
+//			GlobalDataScript.roomVo.xiaYu = GlobalDataScript.reEnterRoomData.xiaYu;
+//			GlobalDataScript.roomVo.ziMo = GlobalDataScript.reEnterRoomData.ziMo;
+//			GlobalDataScript.roomVo.magnification = GlobalDataScript.reEnterRoomData.magnification;
+//			GlobalDataScript.roomVo.chengbei = GlobalDataScript.reEnterRoomData.chengbei;
+//			GlobalDataScript.roomVo.zashu = GlobalDataScript.reEnterRoomData.zashu;
+//			GlobalDataScript.roomVo.aa = GlobalDataScript.reEnterRoomData.aa;
+//			GlobalDataScript.roomVo.paofen = GlobalDataScript.reEnterRoomData.paofen;
+//			GlobalDataScript.roomVo.roundtype = GlobalDataScript.reEnterRoomData.roundtype;
+//			GlobalDataScript.roomVo.yuanzishu = GlobalDataScript.reEnterRoomData.yuanzishu;
+//			GlobalDataScript.roomVo.yuanzijiesu = GlobalDataScript.reEnterRoomData.yuanzijiesu;
+//			GlobalDataScript.roomVo.zhanzhuangbi = GlobalDataScript.reEnterRoomData.zhanzhuangbi;
+//			GlobalDataScript.roomVo.guozhuangbi = GlobalDataScript.reEnterRoomData.guozhuangbi;
+//			GlobalDataScript.roomVo.fengfa = GlobalDataScript.reEnterRoomData.fengfa;
 
 			setRoomRemark();
 			//设置座位

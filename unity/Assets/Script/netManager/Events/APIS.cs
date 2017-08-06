@@ -10,12 +10,12 @@ public class APIS
 	public const string ChatSocketUrl = "ipai.soyo.io";
 
 	public const bool useDNS = false;
-	public const string DNS = "tcp://52.15.183.149";
-	public const int DNS_PORT = 12974;
+	public const string DNS = "0.tcp.ngrok.io";
+	public const int DNS_PORT = 14109;
 
-	public const string SocketUrl = "59.110.48.26";
-//	public const string SocketUrl = "52.15.183.149";
-	public const int SocketPort = 14333;
+	public const string SocketUrl = "52.15.62.13";
+	//	public const string SocketUrl = "52.15.183.149";
+	public const int SocketPort = 14109;
 	public const int ChatPort = 9502;
 
 	public const string ShareUrl = "http://store.ipai.soyo.io/ipai.apk";

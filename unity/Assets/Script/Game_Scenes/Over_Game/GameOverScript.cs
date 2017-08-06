@@ -99,7 +99,7 @@ public class GameOverScript : MonoBehaviour
 	private void initRoomBaseInfo()
 	{
 		timeText.text = DateTime.Now.ToString("yyyy-MM-dd");
-		roomNoText.text = "房间号：" + GlobalDataScript.roomVo.roomId;
+		roomNoText.text = "房间号：" + GlobalDataScript.roomInfo.room_num;
 	}
 
 	private Account getAcount(int uuid)

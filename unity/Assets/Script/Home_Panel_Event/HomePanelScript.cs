@@ -71,7 +71,7 @@ public class HomePanelScript : MonoBehaviour
 		}
 
 		staticc__ChoiceR_api choose = new staticc__ChoiceR_api();
-		choose.rtype = 999999;
+		choose.rtype = ApiCode.CODE_ZERO;
 		CustomSocket.getInstance().sendMsg(new ClientRequest(ApiCode.ChooseGameRequest).
 			SetContent<staticc__ChoiceR_api>(choose));
 	}
@@ -208,12 +208,11 @@ public class HomePanelScript : MonoBehaviour
 	 */
 	private void checkEnterInRoom()
 	{
-		if (GlobalDataScript.roomVo != null && GlobalDataScript.roomVo.roomId != 0) {
+		if (GlobalDataScript.roomInfo != null && GlobalDataScript.roomInfo.room_num != 0) {
 			//loadPerfab ("Prefab/Panel_GamePlay");
-			Debug.Log("check enter in room:" + GlobalDataScript.roomVo);
+			Debug.Log("check enter in room:" + GlobalDataScript.roomInfo);
 			GlobalDataScript.gamePlayPanel = PrefabManage.loadPerfab("Prefab/Panel_GamePlay");
 		}
-
 	}
 
 	/***
@@ -223,17 +222,12 @@ public class HomePanelScript : MonoBehaviour
 	public void openCreateRoomDialog()
 	{
 		SoundCtrl.getInstance().playSoundUI(true);
-		if (GlobalDataScript.loginResponseData == null || GlobalDataScript.loginResponseData.roomId == 0) {
-			loadPerfab("Prefab/Panel_Create_Dialog");
+		if (GlobalDataScript.roomParameters != null) {
+//			loadPerfab("Prefab/Panel_Create_Dialog");
+			PrefabManage.loadPerfab("Prefab/Panel_CreateRoom");
 		} else {
 			TipsManagerScript.getInstance().setTips("当前正在房间状态，无法创建房间");
 		}
-
-
-		staticc__ChoiceR_api choose = new staticc__ChoiceR_api();
-		choose.rtype = 0;
-		CustomSocket.getInstance().sendMsg(new ClientRequest(ApiCode.ChooseGameRequest).
-			SetContent<staticc__ChoiceR_api>(choose));
 	}
 
 	/***
@@ -244,8 +238,8 @@ public class HomePanelScript : MonoBehaviour
 	{
 		SoundCtrl.getInstance().playSoundUI(true);
 
-		if (GlobalDataScript.roomVo == null || GlobalDataScript.roomVo.roomId == 0) {
-			loadPerfab("Prefab/Panel_Enter_Room");
+		if (GlobalDataScript.roomInfo == null || GlobalDataScript.roomInfo.room_num == 0) {
+			PrefabManage.loadPerfab("Prefab/Panel_Enter_Room");
 
 		} else {
 			TipsManagerScript.getInstance().setTips("当前正在房间状态，无法加入新的房间");
@@ -258,24 +252,13 @@ public class HomePanelScript : MonoBehaviour
 	public void openGameRuleDialog()
 	{
 		SoundCtrl.getInstance().playSoundUI(true);
-
-		loadPerfab("Prefab/Panel_Game_Rule_Dialog");
+		PrefabManage.loadPerfab("Prefab/Panel_Game_Rule_Dialog");
 	}
 
 	public void ZhanjiBtnClick()
 	{
 		SoundCtrl.getInstance().playSoundUI(true);
-		loadPerfab("Prefab/Panel_Report");
-	}
-
-	private void loadPerfab(string perfabName)
-	{
-		panelCreateDialog = Instantiate(Resources.Load(perfabName)) as GameObject;
-		panelCreateDialog.transform.parent = gameObject.transform;
-		panelCreateDialog.transform.localScale = Vector3.one;
-		//panelCreateDialog.transform.localPosition = new Vector3 (200f,150f);
-		panelCreateDialog.GetComponent<RectTransform>().offsetMax = new Vector2(0f, 0f);
-		panelCreateDialog.GetComponent<RectTransform>().offsetMin = new Vector2(0f, 0f);
+		PrefabManage.loadPerfab("Prefab/Panel_Report");
 	}
 
 
@@ -329,17 +312,17 @@ public class HomePanelScript : MonoBehaviour
 	private void chooseGameCallBack(ClientResponse response)
 	{
 		if (response.handleCode == StatusCode.SESSION_expire ||
-			response.handleCode == StatusCode.SESSION_invalid || response.bytes == null) {
-			Debug.Log(" error ");
+		    response.handleCode == StatusCode.SESSION_invalid || response.bytes == null) {
+			Debug.Log("chooseGameCallBack error " + response.handleCode);
 			return;
 		}
 		staticc__ChoiceR_response res = ClientRequest.DeSerialize<staticc__ChoiceR_response>(response.bytes);
 		GlobalDataScript.roomParameters = res;
-		for(int i = 0;i<res.choice_info.Count;i++){
-			choice_info item = res.choice_info[i];
-			Debug.Log("i: " + item.name + "  " + item.choice.Count);// + "  " + item.default);
-			for(int j = 0;j<item.choice.Count;j++){
-				Debug.Log("");
+		for (int i = 0; i < res.choice_info.Count; i++) {
+			choice_info item = res.choice_info [i];
+			Debug.Log(i + ": " + item.name + "  " + item.choice.Count);// + "  " + item.default);
+			for (int j = 0; j < item.choice.Count; j++) {
+				Debug.Log("item choice " + j + "  " + item.choice [j]);
 			}
 		}
 	}

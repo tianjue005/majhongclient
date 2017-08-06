@@ -23,8 +23,8 @@ public class SocketEventHandle : MonoBehaviour
 	public ServerCallBackEvent CreateRoomCallBack;
 	//创建房间回调
 
-	public ServerCallBackEvent JoinRoomCallBack;
-	//加入房间回调
+	//	public ServerCallBackEvent JoinRoomCallBack;
+	//	//加入房间回调
 
 	public ServerCallBackEvent StartGameNotice;
 	//
@@ -211,16 +211,16 @@ public class SocketEventHandle : MonoBehaviour
 					ChooseGameCallBack(response);
 				break;
 
-			case APIS.CREATEROOM_RESPONSE:
+			case ApiCode.CreateRoomRequest:
 				if (CreateRoomCallBack != null) {
 					CreateRoomCallBack(response);
 				}
 				break;
-			case APIS.JOIN_ROOM_RESPONSE:
-				if (JoinRoomCallBack != null) {
-					JoinRoomCallBack(response);
-				}
-				break;
+//			case ApiCode.JoinRoomRequest:
+//				if (JoinRoomCallBack != null) {
+//					JoinRoomCallBack(response);
+//				}
+//				break;
 			case APIS.STARTGAME_RESPONSE_NOTICE:
 				if (StartGameNotice != null) {
 					StartGameNotice(response);

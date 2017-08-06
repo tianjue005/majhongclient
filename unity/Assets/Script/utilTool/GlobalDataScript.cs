@@ -12,7 +12,8 @@ public class GlobalDataScript
 {
 
 	public static user_info playerInfo;
-	public static staticc__ChoiceR_response roomParameters; 
+	public static staticc__ChoiceR_response roomParameters;
+	public static room_base_info roomInfo;
 
 	public static bool isDrag = false;
 	/**登陆返回数据**/
@@ -21,10 +22,10 @@ public class GlobalDataScript
 
 
 	/**加入房间返回数据**/
-	public static RoomJoinResponseVo roomJoinResponseData;
+	//	public static RoomJoinResponseVo roomJoinResponseData;
 
 	/**房间游戏规则信息**/
-	public static RoomCreateVo roomVo = new RoomCreateVo();
+	//	public static RoomCreateVo roomVo = new RoomCreateVo();
 
 	/**单局游戏结束服务器返回数据**/
 	public static HupaiResponseVo hupaiResponseVo;
@@ -93,8 +94,8 @@ public class GlobalDataScript
 	{
 		isDrag = false;
 		loginResponseData = null;
-		roomJoinResponseData = null;
-		roomVo = new RoomCreateVo();
+//		roomJoinResponseData = null;
+//		roomVo = new RoomCreateVo();
 		hupaiResponseVo = null;
 		finalGameEndVo = null;
 		roomAvatarVoList = null;

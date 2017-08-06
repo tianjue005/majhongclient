@@ -302,7 +302,7 @@ public class CrateRoomSettingScript : MonoBehaviour
 			//RoomCreateResponseVo responseVO = JsonMapper.ToObject<RoomCreateResponseVo> (response.message);
 			int roomid = Int32.Parse(response.message);
 			sendVo.roomId = roomid;
-			GlobalDataScript.roomVo = sendVo;
+//			GlobalDataScript.roomVo = sendVo;
 			GlobalDataScript.loginResponseData.roomId = roomid;
 			//GlobalDataScript.loginResponseData.isReady = true;
 			GlobalDataScript.loginResponseData.main = true;

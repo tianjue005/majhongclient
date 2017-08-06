@@ -1,4 +1,7 @@
-package tutorial2;
+import "game_server.proto";
+
+package tutorial;
+
 //一定要读的内容：所有来往于客户端与服务器的TCP数据包都必须以5个数字开头，这是保留的头格式，头格式总共是20个字节。
 //头格式的第一个数字的作用是用来定位后续跟的二进制对应的protobuf的包格式，这样保证了可扩展性，这一位称之为首位保留位
 //头格式的后面四个数字的作用是保留的，可以用于特殊定义的一些例外处理，从而省去解析后续二进制的过程
@@ -15,7 +18,6 @@ package tutorial2;
 
 // game server.proto 为总体房间服务器、中心服务器的Protobuf格式列表，
 // xxx_engine.proto 为xxx游戏的服务器客户端交互protobuf格式列表
-
 
 message game_output_info {//此格式可能以顶层格式直接出现在接口交互中（服务器端到客户端），请注意，当首位保留位为11的时候，表示格式为此格式
     optional int32 room_status=1;//房间的状态，见真值表
@@ -64,21 +66,21 @@ message ready_to_start{
 
 }
 
-message user_info {
-    optional string nickname = 1 ;
-    optional int32  sex = 2 ;
-    optional string photo_url = 3 ;
-    optional int32  level = 4 ;
-    optional int32  score = 5 ;
-    optional int32  card = 6 ;
-    optional int32  zuan = 7 ;
-    optional int32  gold = 8 ;
-    optional int32  total_score_win = 9 ;
-    optional int32  total_score_lose = 10 ;
-    optional int32  user_point = 11 ;
-    optional int32  user_id = 12 ;
-    optional string  session_id = 13 ; //大部分时候空缺，只有在登陆接口的时候才存在
-}
+//message user_info {
+//    optional string nickname = 1 ;
+//    optional int32  sex = 2 ;
+//    optional string photo_url = 3 ;
+//    optional int32  level = 4 ;
+//    optional int32  score = 5 ;
+//    optional int32  card = 6 ;
+//    optional int32  zuan = 7 ;
+//    optional int32  gold = 8 ;
+//    optional int32  total_score_win = 9 ;
+//    optional int32  total_score_lose = 10 ;
+//    optional int32  user_point = 11 ;
+//    optional int32  user_id = 12 ;
+//    optional string  session_id = 13 ; //大部分时候空缺，只有在登陆接口的时候才存在
+//}
 
 
 message player_dict{
